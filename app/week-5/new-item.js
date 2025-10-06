@@ -8,17 +8,9 @@ export default function NewItem() {
   const [category, setCategory] = useState("produce");
 
   
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const item = {
-      name,
-      quantity,
-      category,
-    };
-
-    console.log("New Item:", item);
+  const handleAddItem = () => {
     alert(`Item: ${name}\nQuantity: ${quantity}\nCategory: ${category}`);
+    console.log({ name, quantity, category });
 
     
     setName("");
@@ -26,32 +18,17 @@ export default function NewItem() {
     setCategory("produce");
   };
 
-  
-  const increment = () => {
-    if (quantity < 20) {
-      setQuantity(quantity + 1);
-    }
-  };
-
-  
-  const decrement = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
-  };
+  const increment = () => quantity < 20 && setQuantity(quantity + 1);
+  const decrement = () => quantity > 1 && setQuantity(quantity - 1);
 
   return (
     <main>
-      <form
-        onSubmit={handleSubmit}
-        className="mx-auto my-4 gap-3 flex flex-col text-black bg-white w-100 p-4 rounded-lg shadow-md"
-      >
+      <form className="mx-auto my-4 gap-3 flex flex-col text-black bg-white w-100 p-4 rounded-lg shadow-md">
         
         <input
           type="text"
           placeholder="Item Name"
           className="border border-gray-600 rounded p-2"
-          required
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
@@ -114,7 +91,8 @@ export default function NewItem() {
 
         
         <button
-          type="submit"
+          type="button"
+          onClick={handleAddItem}
           className="p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
         >
           Add Item
