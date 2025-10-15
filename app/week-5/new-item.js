@@ -23,7 +23,9 @@ export default function NewItem() {
 
   return (
     <main>
-      <form className="mx-auto my-4 gap-3 flex flex-col text-black bg-white w-100 p-4 rounded-lg shadow-md">
+      <form 
+      onSubmit={handleAddItem}
+      className="mx-auto my-4 gap-3 flex flex-col text-black bg-white w-100 p-4 rounded-lg shadow-md">
         
         <input
           type="text"
@@ -91,8 +93,7 @@ export default function NewItem() {
 
         
         <button
-          type="button"
-          onClick={handleAddItem}
+          type="submit"
           className="p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
         >
           Add Item
